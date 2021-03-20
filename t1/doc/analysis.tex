@@ -1,67 +1,174 @@
 \section{Theoretical Analysis}
+
+In this section, the circuit shown in Figure \ref{fig:Circuit} is analysed
+theoretically using both the Mesh Method and Nodal Method.
+
 \label{sec:analysis}
-
-In this section, the circuit shown in Figure~\ref{fig:rc} is analysed
-theoretically, in terms of its time and frequency responses.
-
-\section{Time response}
-
-The circuit consists of a single V-R-C loop where a current $i(t)$ circulates. The
-voltage source $v_I(t)$ drives its input, and the output voltage $v_O(t)$ is taken from
-the capacitor terminals. Applying the Kirchhoff Voltage Law (KVL), a sngle
-equation for the single loop in the circuit can be written as
-
-\begin{equation}
-  Ri(t) + v_O(t) = v_I(t).
-  \label{eq:kvl}
-\end{equation}
-
-Because $v_O$ is the voltage between capacitor C's plates, it is related to the
-current $i$ by
-\begin{equation}
-  i(t) = C\frac{dv_O}{dt}.
-\end{equation}
-
-Hence, Equation~(\ref{eq:kvl}) can be rewritten as
-\begin{equation}
-  RC\frac{dv_O}{dt} + v_O(t) = v_I.
-  \label{eq:kvl2}
-\end{equation}
-
-Equation~(\ref{eq:kvl2}) is a linear differencial equation whose solution is a
-superposition of a natural solution $v_{On}$ and a forced solution $v_{Of}$:
-
-\begin{equation}
-  v_O(t) = v_{On}(t) + v_{Of}(t).
-  \label{eq:vo_sol}
-\end{equation}
-
-As learned in the theory classes the natural solution is of the form
-\begin{equation}
-  v_{On}(t) = Ae^{-\frac{t}{RC}},
-  \label{eq:vo_nat}
-\end{equation}
-where $A$ is an integration constant.
-
-The forced solution is of the form given in Equation~(\ref{eq:vo_for}) and is
-illustrated in Figure~\ref{fig:forced}.
-
-\begin{equation}
-  V_{Of}(t) = |\bar{V}_{Of}| cos(\omega t + \angle \bar{V}_{Of}),
-  \label{eq:vo_for}
-\end{equation}
-
-\lipsum[1-1]
-
+\subsection {{Mesh Method}}
+For the Mesh Method, circular currents are introduced in the different single meshes of the circuit as shown in \ref{fig:MeshAnalysis} and then the circuit is evaluated considering those new currents.
 
 \begin{figure}[h] \centering
-\includegraphics[width=0.8\linewidth]{forced.eps}
-\caption{Forced sinusoidal response.}
-\label{fig:forced}
+\includegraphics[width=0.4\linewidth]{MeshAnalysis.pdf}
+\caption{Mesh Analysis}
+\label{fig:MeshAnalysis}
 \end{figure}
 
-\section{Frequency response}
+After identifying all the mesh currents, considering the above, it is now necessary to use Kirchhoff Voltage Law (KVL) in those meshes that don't contain current sources (Mesh EC (\textbf{\ref{eq:KVL_{ec}}}) and EB (\textbf{\ref{eq:KVL_{eb}}})) and relate the mesh currents to those imposed by the sources (Mesh DC (\textbf{\ref{eq:KVL_{dc}}}) and DB (\textbf{\ref{eq:KVL_{db}}}).
 
-\lipsum[1-1]
+\vspace{0.1cm}
+
+\begin{equation}
+ -V_{a} + R_{1} I_{ec} + V_{b} + R_{4} (I_{ec} - I_{eb}) = 0
+ \label{eq:KVL_{ec}}
+\end{equation}
+
+\begin{equation}
+    I_{dc} = -I_{b}
+    \label{eq:KVL_{dc}}
+\end{equation}
+
+\begin{equation}
+     I_{db} = -I_{d}
+     \label{eq:KVL_{db}}
+\end{equation}
+
+\begin{equation}
+     V_{c} + R_{7} I_{eb} + R_{6} I_{eb} + R_{4} (I_{eb} - I_{ec}) = 0
+      \label{eq:KVL_{eb}}
+\end{equation}
+
+\vspace{0.5cm}
+Analysing the equations it is noticeable that we have 8 variables and that we'll need four more equations to solve the circuit. It is, also, important to notice that two of them are already given:
+\begin{equation}
+    V_{c} = K_{c} I_{c}
+\end{equation}
+
+\begin{equation}
+    I_{b} = K_{b} V_{b}
+\end{equation}
+
+\vspace{0.5cm}
+The other two are trivial equations found by the careful examination of the circuit with Ohm's Law:
+\vspace{0.5cm}
+\begin{equation}
+    I_{c} = -I_{eb}
+\end{equation}
+
+\begin{equation}
+    V_{b} = R_{3} (I_{ec} - I_{dc})
+\end{equation}
+
+
+\begin{center}
+\begin{tabular}{ |c|c|c| }
+ \hline
+\textbf{Name} & \textbf{Current (A)} & \textbf{Tension (V)} \\
+ \hline
+ I_{ec} & 0.00021431 & - \\
+ \hline
+ I_{dc} &  0.00022413 & - \\
+ \hline
+ I_{db} & -0.0010244 & -  \\
+ \hline
+ I_{eb} & -0.00096915 & - \\
+ \hline
+ V_{b} & - & -0.030688 \\
+ \hline
+ V_{c} & - & 7.8818 \\
+ \hline
+ I_{b} & -0.00022413 & - \\
+ \hline
+ I_{c} & 0.00096915 & - \\
+ \hline
+\end{tabular}
+\end{center}
+
+\subsection{Nodal Metod}
+To determine the values of the current and voltage using the Nodal Method is first necessary to find all the knots in the circuit, as shown in \ref{fig:NodeAnalysis}.
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.4\linewidth]{NodeAnalysis.pdf}
+\caption{Node Analysis}
+\label{fig:NodeAnalysis}
+\end{figure}
+
+\vspace{2cm}
+
+It is then used the Kirchhoff Current Law (KCL) in the nodes that are not connected to voltage sources (from \ref{eq:KCL_{9}} to \ref{eq:KCL_{12}})
+\vspace{0.5cm}
+\begin{equation}
+    V_{5} G_{1} - V_{4} (G_{1} + G_{2}) + V_{3} G_{2} - V_{b} G_{3} = 0
+    \label{eq:KCL_{9}}
+\end{equation}
+
+\begin{equation}
+    -V_{3} G_{2} + V_{4} G_{2} + I_{b} = 0
+\end{equation}
+
+\begin{equation}
+    V_{2} G_{5} + V_{0} G_{5} + I_{d} = I_{b}
+\end{equation}
+
+\begin{equation}
+    G_{6} (V_{6} - V_{7}) - I_{c} = 0
+    \label{eq:KCL_{12}}
+\end{equation}
+\vspace{0.5cm}
+In \ref{eq:KCL_{13}} and \ref{eq:KCL_{14}} knots voltage relate to the voltage sources that are connected to them:
+
+\vspace{0.5cm}
+
+\begin{equation}
+    V_{5} - V_{6} = V_{a}
+    \label{eq:KCL_{13}}
+\end{equation}
+
+\begin{equation}
+    V_{c} = V_{1} - V_{0}
+    \label{eq:KCL_{14}}
+\end{equation}
+
+
+
+\vspace{0.5cm}
+
+By analysing the circuit we get:
+
+\vspace{0.5cm}
+\begin{equation}
+    V_{c} = K_{c} I_{c}
+\end{equation}
+
+\begin{equation}
+    I_{b} = K_{b} V_{b}
+\end{equation}
+
+\begin{equation}
+    V_{b} = V_{4} - V_{0}
+\end{equation}
+
+\begin{equation}
+    V_{0} = 0
+\end{equation}
+
+\vspace{0.5cm}
+
+Using Ohm's Law:
+
+\vspace{0.5cm}
+
+\begin{equation}
+    I_{c} = V_{6} G_{6} - V_{7} G_{6}
+\end{equation}
+\vspace{0.5cm}
+
+
+The continuity of current in voltage sources allows to write this equation:
+\begin{equation} 
+    V_{5} G_{1} - V_{4} G_{1} + I_{c} + V_{0} G_{4} - V_{6} G_{4} = 0   
+\end{equation}
+
+
+
 
 
