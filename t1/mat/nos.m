@@ -123,6 +123,6 @@ fprintf(fid, "$v_{7}$ & %e \\\\ \\hline \n", V7);
 
 fprintf(fid, "$V_{b}$ & %e \\\\ \\hline \n", Vb);
 fprintf(fid, "$V_{c}$ & %e \\\\ \\hline \n", Vc);
-fprintf(fid, "@$I_{b}$ & %e \\\\ \\hline \n", Ib);
-fprintf(fid, "@$I_{c}$ & %e \\\\ \\hline \n", Ic);
+fprintf(fid, "$I_{b}$ & %e \\\\ \\hline \n", Ib);
+fprintf(fid, "$I_{c}$ & %e \\\\ \\hline \n", Ic);
 fclose (fid);

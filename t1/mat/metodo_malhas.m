@@ -91,13 +91,13 @@ Ic    = x(8)
 
 %	Impressão da Tabela
 fid = fopen ("Malhas_tab.tex", "w");
-fprintf(fid, "@$I_{\\EC}$ & %e \\\\ \\hline \n", Iec);
-fprintf(fid, "@$I_{\\DC}$ & %e \\\\ \\hline \n",  Idc);
-fprintf(fid, "@$I_{\\DB}$ & %e \\\\ \\hline \n", Idb);
-fprintf(fid, "@$I_{\\EB}$ & %e \\\\ \\hline \n", Ieb);
+fprintf(fid, "$I_{EC}$ & %e & - \\\\ \\hline \n", Iec);
+fprintf(fid, "$I_{DC}$ & %e  & -\\\\ \\hline \n",  Idc);
+fprintf(fid, "$I_{DB}$ & %e  & -\\\\ \\hline \n", Idb);
+fprintf(fid, "$I_{EB}$ & %e  & -\\\\ \\hline \n", Ieb);
 
-fprintf(fid, "$V_{b}$ & %e \\\\ \\hline \n", Vb);
-fprintf(fid, "$V_{c}$ & %e \\\\ \\hline \n", Vc);
-fprintf(fid, "@$I_{b}$ & %e \\\\ \\hline \n", Ib);
-fprintf(fid, "@$I_{c}$ & %e \\\\ \\hline \n", Ic);
+fprintf(fid, "$V_{b}$ & - & %e \\\\ \\hline \n", Vb);
+fprintf(fid, "$V_{c}$ & - & %e \\\\ \\hline \n", Vc);
+fprintf(fid, "$I_{b}$ & %e  & -\\\\ \\hline \n", Ib);
+fprintf(fid, "$I_{c}$ & %e  & -\\\\ \\hline \n", Ic);
 fclose (fid);

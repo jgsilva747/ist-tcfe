@@ -37,7 +37,7 @@ After identifying all the mesh currents, considering the above, it is now necess
       \label{eq:KVL_{eb}}
 \end{equation}
 
-\vspace{0.5cm}
+\vspace{0.1cm}
 Analysing the equations it is noticeable that we have 8 variables and that we'll need four more equations to solve the circuit. It is, also, important to notice that two of them are already given:
 \begin{equation}
     V_{c} = K_{c} I_{c}
@@ -47,9 +47,9 @@ Analysing the equations it is noticeable that we have 8 variables and that we'll
     I_{b} = K_{b} V_{b}
 \end{equation}
 
-\vspace{0.5cm}
+\vspace{0.1cm}
 The other two are trivial equations found by the careful examination of the circuit with Ohm's Law:
-\vspace{0.5cm}
+\vspace{0.1cm}
 \begin{equation}
     I_{c} = -I_{eb}
 \end{equation}
@@ -58,28 +58,14 @@ The other two are trivial equations found by the careful examination of the circ
     V_{b} = R_{3} (I_{ec} - I_{dc})
 \end{equation}
 
-
+\pagebreak
+In the following table, both current and voltage for each component are presented:
 \begin{center}
 \begin{tabular}{ |c|c|c| }
  \hline
 \textbf{Name} & \textbf{Current (A)} & \textbf{Tension (V)} \\
  \hline
- I_{ec} & 0.00021431 & - \\
- \hline
- I_{dc} &  0.00022413 & - \\
- \hline
- I_{db} & -0.0010244 & -  \\
- \hline
- I_{eb} & -0.00096915 & - \\
- \hline
- V_{b} & - & -0.030688 \\
- \hline
- V_{c} & - & 7.8818 \\
- \hline
- I_{b} & -0.00022413 & - \\
- \hline
- I_{c} & 0.00096915 & - \\
- \hline
+ \input{Malhas_tab}
 \end{tabular}
 \end{center}
 
@@ -92,10 +78,9 @@ To determine the values of the current and voltage using the Nodal Method is fir
 \label{fig:NodeAnalysis}
 \end{figure}
 
-\vspace{2cm}
 
 It is then used the Kirchhoff Current Law (KCL) in the nodes that are not connected to voltage sources (from \ref{eq:KCL_{9}} to \ref{eq:KCL_{12}})
-\vspace{0.5cm}
+\vspace{0.1cm}
 \begin{equation}
     V_{5} G_{1} - V_{4} (G_{1} + G_{2}) + V_{3} G_{2} - V_{b} G_{3} = 0
     \label{eq:KCL_{9}}
@@ -114,9 +99,13 @@ It is then used the Kirchhoff Current Law (KCL) in the nodes that are not connec
     \label{eq:KCL_{12}}
 \end{equation}
 \vspace{0.5cm}
-In \ref{eq:KCL_{13}} and \ref{eq:KCL_{14}} knots voltage relate to the voltage sources that are connected to them:
 
-\vspace{0.5cm}
+\pagebreak
+
+
+In \ref{eq:KCL_{13}} and \ref{eq:KCL_{14}}, knot's voltage relate to the voltage sources that are connected to them:
+
+
 
 \begin{equation}
     V_{5} - V_{6} = V_{a}
@@ -151,11 +140,8 @@ By analysing the circuit we get:
     V_{0} = 0
 \end{equation}
 
-\vspace{0.5cm}
 
 Using Ohm's Law:
-
-\vspace{0.5cm}
 
 \begin{equation}
     I_{c} = V_{6} G_{6} - V_{7} G_{6}
@@ -167,6 +153,18 @@ The continuity of current in voltage sources allows to write this equation:
 \begin{equation} 
     V_{5} G_{1} - V_{4} G_{1} + I_{c} + V_{0} G_{4} - V_{6} G_{4} = 0   
 \end{equation}
+
+In the following table, both current and voltage for each component are presented:
+\begin{center}
+\begin{tabular}{ |c|c|c| }
+ \hline
+\textbf{Name} & \textbf{Current (A)} & \textbf{Tension (V)} \\
+ \hline
+ \input{Tabela_nos}
+\end{tabular}
+\end{center}
+
+\pagebreak
 
 
 
