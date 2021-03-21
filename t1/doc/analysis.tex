@@ -70,7 +70,8 @@ In the following table, both current and voltage for each component are presente
 \end{center}
 
 \subsection{Nodal Metod}
-To determine the values of the current and voltage using the Nodal Method is first necessary to find all the knots in the circuit, as shown in \ref{fig:NodeAnalysis}.
+To determine the values of the current and voltage using the Nodal Method it is first necessary 
+to find all the knots in the circuit, as shown in \ref{fig:NodeAnalysis}.
 
 \begin{figure}[h] \centering
 \includegraphics[width=0.4\linewidth]{NodeAnalysis.pdf}
@@ -79,7 +80,8 @@ To determine the values of the current and voltage using the Nodal Method is fir
 \end{figure}
 
 
-It is then used the Kirchhoff Current Law (KCL) in the nodes that are not connected to voltage sources (from \ref{eq:KCL_{9}} to \ref{eq:KCL_{12}})
+The Kirchhoff Current Law (KCL) is then used in the nodes that are not connected
+to voltage sources (from \ref{eq:KCL_{9}} to \ref{eq:KCL_{12}})
 \vspace{0.1cm}
 \begin{equation}
     V_{5} G_{1} - V_{4} (G_{1} + G_{2}) + V_{3} G_{2} - V_{b} G_{3} = 0
@@ -102,10 +104,8 @@ It is then used the Kirchhoff Current Law (KCL) in the nodes that are not connec
 
 \pagebreak
 
-
-In \ref{eq:KCL_{13}} and \ref{eq:KCL_{14}}, knot's voltage relate to the voltage sources that are connected to them:
-
-
+In \ref{eq:KCL_{13}} and \ref{eq:KCL_{14}}, a relationship is established between
+a knot's voltage and the voltage sources that are connected to them:
 
 \begin{equation}
     V_{5} - V_{6} = V_{a}
@@ -113,7 +113,7 @@ In \ref{eq:KCL_{13}} and \ref{eq:KCL_{14}}, knot's voltage relate to the voltage
 \end{equation}
 
 \begin{equation}
-    V_{c} = V_{1} - V_{0}
+    V_{c} = V_{0} - V_{1}
     \label{eq:KCL_{14}}
 \end{equation}
 
