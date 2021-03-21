@@ -47,7 +47,7 @@ V6*G6 - V7*(G6 - G7) - V1*G7 == 0 %% <=> G6(V6-V7) - Ic = 0
 
 printf("\n\nPor observação do circuito:\n");
 V5 - V6 == Va
-Vc == V1 - V0
+Vc == V0 - V1
 Vc == Kc*Ic
 Vb == V4 - V0
 V0 = 0
