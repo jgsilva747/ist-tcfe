@@ -4,21 +4,28 @@
 \subsection{Operating Point Analysis}
 
 Table~\ref{tab:op} shows the simulated operating point results for the circuit
-under analysis. Compared to the theoretical analysis results, one notices the
-following differences: describe and explain the differences.
+under analysis. It is important to note the creation of an auxiliary node, N8, as well as a fictional voltage source, V3 (providing 0V in order to not affect the rest of the circuit). This creation is due to no theoretical reason whatsoever and it's only necessary because of Ngspice software requirements for defining a current controlled voltage source. 
 
 \begin{table}[h]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
- %%   {\bf Name} & {\bf Value [A or V]} \\ \hline
- %&  \input{op_tab}
+ {\bf Name} & {\bf Value [A or V]} \\ \hline
+ \input{op_tab}
   \end{tabular}
-  \caption{Operating point. A variable preceded by @ is of type {\em current}
-    and expressed in Ampere; other variables are of type {\it voltage} and expressed in
-    Volt.}
+  \caption{Operating point}
   \label{tab:op}
 \end{table}
+
+\textbf{Note:}
+A variable preceded by @ is of type {\em current}
+    and expressed in Ampere; other variables are of type {\it voltage} and expressed in Volt.
+    \vspace{0.3cm}
+    \par
+ As it can be seen, the simulation results coincide up to the last digit with the theoretical results.
+ \vspace{6cm}
+ \pagebreak
+
 
 
 

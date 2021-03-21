@@ -53,7 +53,23 @@ echo "****************"
 *print @R6[i]
 
 echo  "op_TAB"
-print all
+echo "@Id[i]=1.02440e-3"
+print @gb[i]
+print @r1[i]
+print @r2[i]
+print @r3[i]
+print @r4[i]
+print @r5[i]
+print @r6[i]
+print @r7[i]
+print n0
+print n1
+print n2
+print n3
+print n4
+print n5
+print n7
+print n8
 echo  "op_END"
 
 quit
