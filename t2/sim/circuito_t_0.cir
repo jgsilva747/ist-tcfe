@@ -1,4 +1,4 @@
-T1
+T1 t = 0
 
 * NGSPICE simulation script
 * BJT amp with feedback
@@ -17,11 +17,10 @@ R5 N5 N6 3.04804224053k
 R6 0 N4 2.06609096892k
 R7 N7 N8 1.01589064139k
 
-*Condensator
-C N6 N8 1.02439571082u
-
 *Independent Voltage and Current Sources
-Vs N1 0 DC 5.08211987776
+Vs N1 0 DC 0
+
+Vx N6 N8 10.320041e+00
 
 Id N1 N2 DC 1.02439571082m
 
@@ -56,15 +55,9 @@ echo "****************"
 
 *Tabela Principal
 
-echo  "op_TAB"
+echo  "opt0_TAB"
 print all
-echo  "op_END"
-
-
-echo "aux_TAB"
-print n6
-echo "aux_END"
+echo  "opt0_END"
 
 .endc
-
 .end

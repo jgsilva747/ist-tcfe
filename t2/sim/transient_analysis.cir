@@ -1,4 +1,4 @@
-T1
+T1 transient analysis (forced + natural)
 
 * NGSPICE simulation script
 * BJT amp with feedback
@@ -21,7 +21,8 @@ R7 N7 N8 1.01589064139k
 C N6 N8 1.02439571082u
 
 *Independent Voltage and Current Sources
-Vs N1 0 DC 5.08211987776
+Vcc vcc 0 1.0
+Vs N1 0 0.0 ac 1.0 sin(0 1 1k)
 
 Id N1 N2 DC 1.02439571082m
 
@@ -33,6 +34,9 @@ Gb N6 N3 N2 N5 7.30340439475m
 
 Hc N5 N8 V3 8.13276803722k
 
+
+.ic v(n6) = 9.707995e+00
+.ic v(n8) = -6.12046e-01
 
 .control
 
@@ -46,6 +50,9 @@ set color4=violet
 set color5=rgb:3/8/0
 set color6=rgb:4/0/0
 
+*plot db(v(n6))
+*plot db(v(n1))
+
 op
 
 echo "****************"
@@ -56,15 +63,34 @@ echo "****************"
 
 *Tabela Principal
 
-echo  "op_TAB"
+echo  "op2_TAB"
 print all
-echo  "op_END"
+echo  "op2_END"
 
+echo "********************************************"
+echo  "Transient analysis"
+echo "********************************************"
+tran 1e-3 20e-3
 
-echo "aux_TAB"
-print n6
-echo "aux_END"
+hardcopy forced6trans.ps v(n6)
+echo forced6trans_FIG
+
+echo "********************************************"
+echo  "Transient analysis"
+echo "********************************************"
+tran 1e-3 20e-3
+
+hardcopy forced1trans.ps v(n1)
+echo forced1trans_FIG
+
+echo "********************************************"
+echo  "Frequency analysis"
+echo "********************************************"
+
+ac dec 10 0.1 1MEG
+
+hardcopy acm.ps db(v(n6)) db(v(n1))
+echo acm_FIG
 
 .endc
-
 .end

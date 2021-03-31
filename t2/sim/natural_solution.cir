@@ -1,4 +1,4 @@
-T1
+T1 transient analysis
 
 * NGSPICE simulation script
 * BJT amp with feedback
@@ -21,7 +21,7 @@ R7 N7 N8 1.01589064139k
 C N6 N8 1.02439571082u
 
 *Independent Voltage and Current Sources
-Vs N1 0 DC 5.08211987776
+Vs N1 0 DC 0
 
 Id N1 N2 DC 1.02439571082m
 
@@ -33,6 +33,9 @@ Gb N6 N3 N2 N5 7.30340439475m
 
 Hc N5 N8 V3 8.13276803722k
 
+
+.ic v(n6) = 9.707995e+00
+.ic v(n8) = -6.12046e-01
 
 .control
 
@@ -56,15 +59,17 @@ echo "****************"
 
 *Tabela Principal
 
-echo  "op_TAB"
+echo  "op2_TAB"
 print all
-echo  "op_END"
+echo  "op2_END"
 
+echo "********************************************"
+echo  "Transient analysis"
+echo "********************************************"
+tran 1e-3 20e-3
 
-echo "aux_TAB"
-print n6
-echo "aux_END"
+hardcopy naturaltrans.ps v(n6)
+echo naturaltrans_FIG
 
 .endc
-
 .end
