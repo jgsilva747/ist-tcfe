@@ -4,20 +4,12 @@
 # type "make clean" to delete all generated files
 # ------------------------------------------------------------
 
-
-
 all:
-	echo 95802 | python2.7 t2_datagen.py > data.txt
-	sed -i -e '1,8d;20,22d' data.txt
-	sed -i 's/Values:  //g' data.txt
-	cp -r data.txt ~/mat
-	make -C mat
-	make -C doc
-	cp doc/report.pdf .
+	sed -i 's/C =/Ca = /g' data.txt
 
 clean:
 	@rm -f data.txt
-	make -C doc clean
 
 .PHONY: all clean
+
 
