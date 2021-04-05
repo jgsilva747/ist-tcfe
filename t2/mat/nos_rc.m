@@ -62,19 +62,19 @@ diary on
 
 % Table
 
-fid = fopen ("../doc/data.tex", "w");
-fprintf(fid, "$R_1$ & %e \\\\ \\hline \n", R1);
-fprintf(fid, "$R_2$ & %e \\\\ \\hline \n", R2);
-fprintf(fid, "$R_3$ & %e \\\\ \\hline \n", R3);
-fprintf(fid, "$R_4$ & %e \\\\ \\hline \n", R4);
-fprintf(fid, "$R_5$ & %e \\\\ \\hline \n", R5);
-fprintf(fid, "$R_6$ & %e \\\\ \\hline \n", R6);
-fprintf(fid, "$R_7$ & %e \\\\ \\hline \n", R7);
-fprintf(fid, "$V_s$ & %e \\\\ \\hline \n", Vs);
-fprintf(fid, "$C$ & %e \\\\ \\hline \n", C);
-fprintf(fid, "$K_b$ & %e \\\\ \\hline \n", Kb);
-fprintf(fid, "$K_d$ & %e \\\\ \\hline \n", Kd);
-fclose (fid);
+fid=fopen('../doc/data.tex', 'w');
+fprintf(fid, "$R_1$ & %.11f \\\\ \\hline \n", data(1,3)*1000);
+fprintf(fid, "$R_2$ & %.11f \\\\ \\hline \n", data(2,3)*1000);
+fprintf(fid, "$R_3$ & %.11f \\\\ \\hline \n",data(3,3)*1000);
+fprintf(fid, "$R_4$ & %.11f \\\\ \\hline \n", data(4,3)*1000);
+fprintf(fid, "$R_5$ & %.11f \\\\ \\hline \n", data(5,3)*1000);
+fprintf(fid, "$R_6$ & %.11f \\\\ \\hline \n", data(6,3)*1000);
+fprintf(fid, "$R_7$ & %.11f \\\\ \\hline \n", data(7,3)*1000);
+fprintf(fid, "$V_s$ & %.11f \\\\ \\hline \n", data(8,3));
+fprintf(fid, "$C$ & %.11f \\\\ \\hline \n", data(9,3)*10^-6);
+fprintf(fid, "$K_b$ & %.11f \\\\ \\hline \n", data(10,3)/1000);
+fprintf(fid, "$K_d$ & %.11f \\\\ \\hline \n", data(11,3)*1000);
+fclose(fid);
 
 V0 = double(sn.V0);
 V1 = double(sn.V1);
@@ -202,18 +202,18 @@ syms vc_n(t) %natural solution
 syms i_n(t)
 
 sim3f=fopen('data_sim3.txt','w');
-fprintf(simf, 'R1 1 2 %fk\n', data(1,3));
-fprintf(simf, 'R2 2 3 %fk\n', data(2,3));
-fprintf(simf, 'R3 2 5 %fk\n', data(3,3));
-fprintf(simf, 'R4 0 5 %fk\n', data(4,3));
-fprintf(simf, 'R5 5 6 %fk\n', data(5,3));
-fprintf(simf, 'R6 0 4 %fk\n', data(6,3));
-fprintf(simf, 'R7 7 8 %fk\n', data(7,3));
-fprintf(simf, 'Vs 1 0 DC %f\n', 0);
-fprintf(simf, 'Vf 4 7 DC 0\n');
-fprintf(simf, 'C 6 8 %fu\n', data(9,3));
-fprintf(simf, 'Gb 6 3 2 5 %fm\n', data(10,3));
-fprintf(simf, 'Hd 5 8 Vf %fk\n', data(11,3));
+fprintf(sim3f, 'R1 1 2 %fk\n', data(1,3));
+fprintf(sim3f, 'R2 2 3 %fk\n', data(2,3));
+fprintf(sim3f, 'R3 2 5 %fk\n', data(3,3));
+fprintf(sim3f, 'R4 0 5 %fk\n', data(4,3));
+fprintf(sim3f, 'R5 5 6 %fk\n', data(5,3));
+fprintf(sim3f, 'R6 0 4 %fk\n', data(6,3));
+fprintf(sim3f, 'R7 7 8 %fk\n', data(7,3));
+fprintf(sim3f, 'Vs 1 0 DC %f\n', 0);
+fprintf(sim3f, 'Vf 4 7 DC 0\n');
+fprintf(sim3f, 'C 6 8 %fu\n', data(9,3));
+fprintf(sim3f, 'Gb 6 3 2 5 %fm\n', data(10,3));
+fprintf(sim3f, 'Hd 5 8 Vf %fk\n', data(11,3));
 
 fclose(sim3f);
 C = sym(sprintf('%.11f', data(9,3)));
