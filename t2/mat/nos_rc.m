@@ -60,6 +60,22 @@ sn = solve(Eq_0,Eq_f,Eq_d,Eq_s,Eq_2,Eq_3,Eq_5,Eq_6,Eq_7);
 diary "nodal_tab.tex"
 diary on
 
+% Table
+
+fid = fopen ("../doc/data.tex", "w");
+fprintf(fid, "$R_1$ & %e \\\\ \\hline \n", R1);
+fprintf(fid, "$R_2$ & %e \\\\ \\hline \n", R2);
+fprintf(fid, "$R_3$ & %e \\\\ \\hline \n", R3);
+fprintf(fid, "$R_4$ & %e \\\\ \\hline \n", R4);
+fprintf(fid, "$R_5$ & %e \\\\ \\hline \n", R5);
+fprintf(fid, "$R_6$ & %e \\\\ \\hline \n", R6);
+fprintf(fid, "$R_7$ & %e \\\\ \\hline \n", R7);
+fprintf(fid, "$V_s$ & %e \\\\ \\hline \n", Vs);
+fprintf(fid, "$C$ & %e \\\\ \\hline \n", C);
+fprintf(fid, "$K_b$ & %e \\\\ \\hline \n", Kb);
+fprintf(fid, "$K_d$ & %e \\\\ \\hline \n", Kd);
+fclose (fid);
+
 V0 = double(sn.V0);
 V1 = double(sn.V1);
 V2 = double(sn.V2);
