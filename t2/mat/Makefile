@@ -18,10 +18,10 @@ octave.log: nos_rc.m
 	sed -i 's/\I_/\@/g' nodal_tab.tex
 	mv nodal_tab.tex ../doc
 	
-	sed -i 's/\=/\&/g' phaser_tab.tex
-	sed -i 's/p//g' phaser_tab.tex
-	sed -i 's/$$/\\\\ \\hline/g' phaser_tab.tex
-	mv phaser_tab.tex ../doc
+	sed -i 's/\=/\&/g' phasor_tab.tex
+	sed -i 's/p//g' phasor_tab.tex
+	sed -i 's/$$/\\\\ \\hline/g' phasor_tab.tex
+	mv phasor_tab.tex ../doc
 	
 	sed -i 's/\=/\&/g' req_tab.tex
 	sed -i 's/$$/\\\\ \\hline/g' req_tab.tex

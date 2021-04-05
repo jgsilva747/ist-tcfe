@@ -1,38 +1,14 @@
-T1
-
+*
 * NGSPICE simulation script
-* BJT amp with feedback
 *
 
 * forces current values to be saved
 .options savecurrents
 
+* include data for simulation when t<0
+.INCLUDE data_sim.txt
 
-*Resistors
-R1 N1 N2 1.01658203395k
-R2 N2 N3 2.08071598482k
-R3 N2 N5 3.12527703197k
-R4 0 N5 4.13615246449k
-R5 N5 N6 3.04804224053k
-R6 0 N4 2.06609096892k
-R7 N7 N8 1.01589064139k
-
-*Condensator
-C N6 N8 1.02439571082u
-
-*Independent Voltage and Current Sources
-Vs N1 0 DC 5.08211987776
-
-Id N1 N2 DC 1.02439571082m
-
-V3 N4 N7 DC 0
-
-*Dependent Voltage and Current Sources
-
-Gb N6 N3 N2 N5 7.30340439475m
-
-Hc N5 N8 V3 8.13276803722k
-
+.model P2model NPN(Bf=200, CJE=12pF, CJC=2pF)
 
 .control
 
@@ -48,23 +24,17 @@ set color6=rgb:4/0/0
 
 op
 
-echo "****************"
+echo "********************************************"
 echo  "Operating point"
-echo "****************"
-*print v-sweep
-*print @R6[i]
+echo "********************************************"
 
-*Tabela Principal
-
+print V(6)-V(8) > datav6v8.txt 
+print V(6)-V(8) > dataic.txt
 echo  "op_TAB"
 print all
 echo  "op_END"
 
-
-echo "aux_TAB"
-print n6
-echo "aux_END"
-
+quit
 .endc
 
 .end

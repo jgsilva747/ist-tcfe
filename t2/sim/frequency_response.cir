@@ -1,12 +1,13 @@
 * NGSPICE simulation script
-* BJT amp with feedback
 *
 * forces current values to be saved
 .options savecurrents
 
-.INCLUDE data_sim4.txt
+
+.INCLUDE data_sim5.txt
 .INCLUDE dataic.txt
 *.ic v(6)=8.573530 v(8)=0
+* falta automatizar esta merda aqui de cima 
 .end
 .control
 
@@ -20,15 +21,21 @@ set color4=violet
 set color5=rgb:3/8/0
 set color6=rgb:4/0/0
 
-op
-
 echo "********************************************"
-echo  "Transient analysis"
+echo  "Frequency analysis"
 echo "********************************************"
-tran 1e-6 20e-3
 
-hardcopy transv5vs.ps v(6) v(1)
-echo transv5vs_FIG
+ac dec 1000 0.1 1MEG
+
+hardcopy acm.ps db(v(6)) db(v(6)-v(8)) db(v(1))
+echo acm_FIG
+
+Let phase_v(6) = 180/PI * ph(v(6))
+Let phase_v(1) = 180/PI * ph(v(1))
+Let phase_v(c) = 180/PI * ph(v(6)-v(8))
+
+hardcopy phase.ps phase_v(6) phase_v(1) phase_v(c)
+echo phase_FIG
 
 quit
 .endc

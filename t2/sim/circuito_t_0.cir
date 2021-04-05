@@ -1,38 +1,13 @@
-T1 t = 0
-
+*-------------------------------------------------------
 * NGSPICE simulation script
-* BJT amp with feedback
 *
 
 * forces current values to be saved
 .options savecurrents
 
-
-*Resistors
-R1 N1 N2 1.01658203395k
-R2 N2 N3 2.08071598482k
-R3 N2 N5 3.12527703197k
-R4 0 N5 4.13615246449k
-R5 N5 N6 3.04804224053k
-R6 0 N4 2.06609096892k
-R7 N7 N8 1.01589064139k
-
-*Independent Voltage and Current Sources
-Vs N1 0 DC 0
-
-Vx N6 N8 10.320041e+00
-
-Id N1 N2 DC 1.02439571082m
-
-V3 N4 N7 DC 0
-
-*Dependent Voltage and Current Sources
-
-Gb N6 N3 N2 N5 7.30340439475m
-
-Hc N5 N8 V3 8.13276803722k
-
-
+*resistors
+.INCLUDE data_simeq.txt
+.INCLUDE datav6v8.txt
 .control
 
 *makes plots in color
@@ -47,17 +22,18 @@ set color6=rgb:4/0/0
 
 op
 
-echo "****************"
+echo "********************************************"
 echo  "Operating point"
-echo "****************"
-*print v-sweep
-*print @R6[i]
+echo "********************************************"
 
-*Tabela Principal
-
-echo  "opt0_TAB"
+echo  "opeq_TAB"
 print all
-echo  "opt0_END"
+print v(6)-v(8)
+print (v(6)-v(8))/vx#branch
+echo  "opeq_END"
 
+
+quit
 .endc
+
 .end

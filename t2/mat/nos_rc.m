@@ -247,7 +247,7 @@ Eq3_x = Vxp == V6p-V8p;
 
 sn_p = solve(Eq3_v0,Eq3_f,Eq3_d,Eq3_s,Eq3_2,Eq3_3,Eq3_0,Eq3_6,Eq3_7,Eq3_x);
 
-diary "phaser_tab.tex"
+diary "phasor_tab.tex"
 diary on
 
 V0p = double(abs(sn_p.V0p))
