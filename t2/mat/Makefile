@@ -4,6 +4,8 @@
 # type "make clean" to delete all generated files
 # ------------------------------------------------------------
 
+all: | octave.log convert
+
 octave.log: nos_rc.m
 	sed -i 's/C =/Ca = /g' data.txt
 	octave $< > $@
@@ -30,8 +32,17 @@ octave.log: nos_rc.m
 	sed -i 's/\I_/\@/g' req_tab.tex
 	sed -i 's/tau/\\tau/g' req_tab.tex
 	mv req_tab.tex ../doc
-	
-	mv *.odg ../doc
+
+convert: 
+	 ls *.eps | awk '{system("epstopdf "$$0 )}'
+	 mv vs_v6_f_tab.pdf ../doc
+	 mv theo5_tab.pdf ../doc
+	 mv capacitor_voltage_tab.pdf ../doc
+	 mv freq_resp_tab.pdf ../doc
+	 mv angle_tab.pdf ../doc
+	 mv natural_tab.pdf ../doc
+ 
+
 
 clean:
 	@rm -f octave.log octave-workspace *.eps *~

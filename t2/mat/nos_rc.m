@@ -123,7 +123,6 @@ fprintf(simf, 'R6 0 4 %fk\n', data(6,3));
 fprintf(simf, 'R7 7 8 %fk\n', data(7,3));
 fprintf(simf, 'Vs 1 0 DC 0\n');
 fprintf(simf, 'Vf 4 7 DC 0\n');
-%fprintf(simf, 'Vx 6 8 DC %f\n', double(V6-V8));
 fprintf(simf, 'Gb 6 3 2 5 %fm\n', data(10,3));
 fprintf(simf, 'Hd 5 8 Vf %fk\n', data(11,3));
 
@@ -238,7 +237,7 @@ plot(t*1000, v6_n, "g")
 xlabel ("t[ms]");
 ylabel ("Potencial in node 6 in Volts");
 legend('v6_n(t)', 'Location', 'Northeast');
-print (hf, "natural_tab.odg", "-depsc");
+print (hf, "natural_tab.eps", "-depsc");
 
 
 %NODAL THEO 4 forced solution
@@ -311,7 +310,7 @@ plot (t*1000, v6_f, ";v6_f(t);");
 xlabel ("t [ms]");
 ylabel ("v [V]");
 legend('Location','northeast');
-print (hf, "vs_v6_f_tab.odg", "-depsc");
+print (hf, "vs_v6_f_tab.eps", "-depsc");
 
 
 %NODAL THEO 4 total solution
@@ -337,7 +336,7 @@ plot (tt*1000, vst,";vs(t);", tt*1000, v6t_t, ";v6(t);");
 xlabel ("t [ms]");
 ylabel ("v [V]");
 legend('Location','northeast');
-print (hft, "theo5_tab.odg", "-depsc");
+print (hft, "theo5_tab.eps", "-depsc");
 
 
 hfc = figure (4);
@@ -346,7 +345,7 @@ plot (tt*1000, v6t_t-v8t_t, ";vc(t);");
 xlabel ("t [ms]");
 ylabel ("v [V]");
 legend('Location','northeast');
-print (hfc, "capacitor_voltage_tab.odg", "-depsc");
+print (hfc, "capacitor_voltage_tab.eps", "-depsc");
 
 %FREQUENCY RESPONSE
 
@@ -414,7 +413,7 @@ hold on
 semilogx(freq, 20*log10(vsf),";vs(f);")
 hold off
 
-print (hfr, "freq_resp_tab.odg", "-depsc");
+print (hfr, "freq_resp_tab.eps", "-depsc");
 
 
 hfa = figure (6);
@@ -422,4 +421,4 @@ semilogx(freq,180/pi*angle(a6), "r",freq,vsfa,"g",freq,180/pi*angle(ax), "b");
 xlabel ("f [Hz]");
 ylabel ("phase [degrees]");
 legend('phase.v6(f)','phase.vs(f)','phase.vc(f)','Location','northwest');
-print (hfa, "angle_tab.odg", "-depsc");
+print (hfa, "angle_tab.eps", "-depsc");
