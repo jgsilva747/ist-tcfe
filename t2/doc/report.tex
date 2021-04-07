@@ -11,10 +11,12 @@
 \usepackage[utf8]{inputenc}   % <<<<< Linux
 \usepackage[english]{babel} % <<<<< English
 \usepackage{notoccite}
-\usepackage[skip=0.5\baselineskip]{caption}
+\usepackage[skip=0.05\baselineskip]{caption}
 \hyphenation{GTKWave}
 \usepackage{listings}
 \usepackage[all]{nowidow}
+\usepackage{amsmath}
+\usepackage{placeins}
 
 %blind text
 \usepackage{lipsum}
@@ -38,7 +40,7 @@
 \renewcommand{\sfdefault}{phv}
 \usepackage{geometry}	
 \geometry{verbose,tmargin=2.5cm,bmargin=2.5cm,lmargin=2.5cm,rmargin=2.5cm}
-
+\usepackage{mathtools}
 %\usepackage{setspace}
 %\renewcommand{\baselinestretch}{1.5}
 
@@ -72,7 +74,7 @@
 \usepackage[numbers,sort&compress]{natbib} % <<<<< References in numbered list [1],[2],...
 \usepackage{subcaption} 
 \usepackage{mdframed}
-
+\usepackage{float}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     Begin Document                                                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -117,26 +119,9 @@
 % Table of contents
 %
 \tableofcontents
-\vspace{17cm}
+\vspace{1cm}
 \pagebreak
-% List of tables
-%\addcontentsline{toc}{section}{\listtablename}
-%\listoftables
-%\cleardoublepage 
 
-% List of figures
-%\addcontentsline{toc}{section}{\listfigurename}
-%\listoffigures
-%\cleardoublepage 
-
-% Set arabic numbering (1,2,...) after preface
-%
-%\setcounter{page}{1}
-%\pagenumbering{arabic}
-
-% ----------------------------------------------------------------------
-%  Body
-% ----------------------------------------------------------------------
 
 \input{intro}
 
