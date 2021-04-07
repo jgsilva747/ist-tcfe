@@ -21,7 +21,7 @@ In this section the steps needed to simulate this circuit using the software Ngs
 	\end{cases*}
 	\label{eq:i31}  
 \end{equation}
-
+\pagebreak
 %ponto 1
 \subsection{Operating Point Analysis for $t<0$}
 In this section, there was a need to create a Node 4, between the resistor R6 and Node 7, where an independent voltage source, $V_x$, providing 0V was inserted, to measure the voltage drop ($-V7$) felt by $I_d$. This was created in order to comply with NGSpice's requirements for defining the current controlled voltage source $V_d$.
@@ -36,12 +36,14 @@ under analysis for $t<0$.
     {\bf Name} & {\bf Value [mA or V]} \\ \hline
     \input{op_tab}
   \end{tabular}
+  \vspace{10px}
   \caption{Operating point for $t<0$. A variable preceded by @ is of type {\em current}
     and expressed in milliAmpere; other variables are of type {\it voltage} and expressed in
     Volt.}
   \label{tab:op} 
 \end{table}
-
+\vspace{9cm}
+\pagebreak
 %ponto 2
 
 \subsection{Operating Point Analysis for $t=0$}
@@ -54,53 +56,55 @@ In \textbf{Table~\ref{tab:opeq}} the simulation results are presented.
     {\bf Name} & {\bf Value [mA or V and Ohm]} \\ \hline
     \input{opeq_tab}
   \end{tabular} 
+  \vspace{10px}
   \caption{Operating point for {\it $v_s(0)=0$}. A variable preceded by @ is of type {\em current}
     and expressed in miliAmpere; variables are of type {\it voltage} and expressed in
     Volt. The equivalent resistance is in Ohms}
   \label{tab:opeq}
 \end{table}
-\newpage
+\vspace{6cm}
+\pagebreak
 
 %ponto 3
- \vspace{3cm}
 \subsection{ Natural solution for $V_6$ using transient analysis}
 In this section the natural response of the circuit in the interval [0,20] ms was studied using a transient analysis simulation. Using the previous simulations, the initial conditions for V(6) and V(8) were defined, using NGSpice's diretive \textit{.ic}.
 \par
-\vspace{1cm}
-\newpage
+
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.7\linewidth]{trans.pdf}
 \caption{Simulated natural response of $V_6(t)$ in the interval [0,20] ms. The \textit{x axis} represents the time in milliseconds and the \textit{y axis} the Voltage in node 6  in Volts.  }
 \label{fig:transient}
 \end{figure}
-
+\vspace{4cm}
+\pagebreak
 %ponto 4
 \subsection{ Total solution for $V_6$ using transient analysis}
 
 In this section the total response of $V_6$ (natural + forced) is simulated using NGSpice's transient analysis capabilities. This is done by repeating the previous section, but using {\it $V_s$} as given in \ref{eq:i2} and f = 1kHz.\par
 \begin{figure}[H] \centering
-\includegraphics[width=0.9\linewidth]{transv5vs.pdf}
+\includegraphics[width=0.6\linewidth]{transv5vs.pdf}
 \caption{Simulated response of $V_{6}(t)$ and of the stimulus $V_{s}(t)$ as functions of time from [0,20] ms. The \textit{x axis} represents the time in milliseconds and the \textit{y axis} the Voltage in Volts.}
 \label{fig:resp_total}
 \end{figure}
+\vspace{7cm}
+\pagebreak
 
 %ponto 5
-\pagebreak
+
 \subsection{ Frequency response in node 6}
-In this section, the frequency response in node 6 is simulated for the frequency range from 0.1 Hz to 1 MHz. 
+In this section, the frequency response in node 6 is simulated for the frequency range from 0.1 Hz to 1 MHz, along with the phase response of the circuit.
 The reasons of how and why $V_{6}(t)$ and $V_{s}(t)$ differ have been covered in \textbf{subsection ~\ref{ref}}.\par
 \begin{figure}[H] \centering
-\includegraphics[width=0.9\linewidth]{acm.pdf}
+\includegraphics[width=0.4\linewidth]{acm.pdf}
 \caption{Magnitude of $V_s(f)$, $V_c(f)$  and of $V_6(f)$. The \textit{x axis} represents the frequency in Hz, using a logarithmic scale and the \textit{y axis} the magnitude in dB.}
 \label{fig:Magnitude}
 \end{figure}
 
+
 \par
 \begin{figure}[H] \centering
-\includegraphics[width=1\linewidth]{phase.pdf}
+\includegraphics[width=0.4\linewidth]{phase.pdf}
 \caption{Phase of $V_s(f)$, $V_c(f)$ and of $V_6(f)$. The \textit{x axis} represents the frequency in HZ, using a logarithmic scale and the \textit{y axis} the phase in degrees.}  
 \label{fig:phase}
 \end{figure}
-\vspace{2cm}
-\pagebreak

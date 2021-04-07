@@ -110,11 +110,11 @@ The natural solution depends on the initial charge (voltage). Using $R_{eq}$ and
 
 
 \begin{figure}[H] \centering
-\includegraphics[width=0.8\linewidth]{natural_tab.pdf} 
+\includegraphics[width=0.5\linewidth]{natural_tab.pdf} 
+\vspace{10px}
 \caption{Natural response of $V_6$ as a function of time in the interval from [0,20] ms}
 \label{fig:natural}
 \end{figure} 
-\pagebreak
 
 %point 4
 \subsection{Forced solution for V6 with f=1000Hz}
@@ -181,6 +181,7 @@ The complex amplitudes of the phasors are presented in  \textbf{Table ~\ref{tab:
     {\bf Name} & {\bf Complex amplitude voltage}\\ \hline
     \input{phasor_tab}
   \end{tabular}
+  \vspace{10px}
   \caption{Complex amplitudes in all nodes in Volts}
   \label{tab:equivalent resistor}
 \end{table}
@@ -191,7 +192,8 @@ The complex amplitudes of the phasors are presented in  \textbf{Table ~\ref{tab:
 \subsection{Final total solution V6(t)}
 In this section the final total solution $V_6$ for a frequency of 1KHz is determined using the natural and forced solutions determined in previous sections ($V_6$=$V_{n6}$+$V_{6f}$). In {Figure:~\ref{fig:theo5}} the voltage of the independent source $V_{s}$ and the voltage of $V_{6}$ were plotted for the time interval of [-5,20] ms. 
 \begin{figure}[H] \centering
-\includegraphics[width=0.90\linewidth]{theo5_tab.pdf}
+\includegraphics[width=0.60\linewidth]{theo5_tab.pdf}
+\vspace{10px}
 \caption{Voltage of $V_{6}(t)$ and $V_{s}(t)$ as functions of time from [-5,20] ms}
 \label{fig:theo5}
 \end{figure}
@@ -217,9 +219,9 @@ Simplifying this circuit to something close to its Thevenan equivalent, using on
   \phi_{V_c} = -\frac{\pi}{2} + arctan(R_{eq}.C.2\pi.f)
   \label{eq:freqresp2}
 \end{equation}
- \newpage %toples
 \begin{figure}[H] \centering
-\includegraphics[width=1\linewidth]{freq_resp_tab.pdf}
+\includegraphics[width=0.8\linewidth]{freq_resp_tab.pdf}
+\vspace{10px}
 \caption{Graph for amplitude frequency response, in dB, of $V_c$, $V_6$ and $V_s$ for frequencies ranging from 0.1Hz to 1MHz (logarithmic scale).}
 \label{fig:freq_resp}
 \end{figure}
@@ -227,9 +229,11 @@ Simplifying this circuit to something close to its Thevenan equivalent, using on
 
 
 \begin{figure}[H] \centering
-\includegraphics[width=1\linewidth]{angle_tab.pdf}
+\includegraphics[width=0.8\linewidth]{angle_tab.pdf}
+\vspace{10px}
 \caption{Graph for the phase response, in degrees of $V_c$, $V_6$ and $V_s$ for frequencies ranging from 0.1Hz to 1MHz, displayed in a logarithmic scale. The phase of $V_6$ is actually continuous, and the reason for the apparent discontinuity in the graph is because of the domain of the arctan function - $D_{arctan}$ = ]-180, 180].}
 \label{fig:angle_resp}
 \end{figure}
+
 
 
