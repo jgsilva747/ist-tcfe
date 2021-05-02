@@ -13,18 +13,18 @@ VIN n1 0 SIN(0 230 50 0 0)
 F1 n1 0 E2 14
 E2 n2 0 n1 0 0.071429
 
-*Diodos manhosos
+*Diodos
 D1 n2 n4 Default
 D2 0 n4 Default
 D3 n3 0 Default
 D4 n3 n2 Default
 
 *Envelope Detector
-R1 n4 n3 65k
-C0 n4 n3 20u
+R1 n4 n3 26k
+C0 n4 n3 26u
 
 *Voltage Regulator
-R2 n4 n5 7.26k
+R2 n4 n5 7.15k
 D5 n5 n6 Default
 D6 n6 n7 Default
 D7 n7 n8 Default
