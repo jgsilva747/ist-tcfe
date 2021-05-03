@@ -1,172 +1,142 @@
-close all
+close all 
 clear all
-
-pkg load symbolic;
-
-format long;
-
-%option = 1 %half wave rectifier
-option = 2 %full wave rectifier
-
-
-%reads data file ----------------------------------
-dataf = fopen('../data_octave.txt','r');
-DATA = fscanf(dataf,'%*s = %f');
-fclose(dataf);
-
-%variables -----------------------------------------
-Renv = DATA(1)
-C = DATA(2)
 f=50;
-vini = 230;
-Rreg = DATA(3)
-
-%transformer -----------------------------------------
-n = DATA(4)
-A = vini/n;
-
-%envelope detector -----------------------------------------
-
-t=linspace(0, 10/f, 50000);
 w=2*pi*f;
-vSenv = A * cos(w*t);
-vOhr = zeros(1, length(t));
-vOenv = zeros(1, length(t));
+R=26e3
+C=26e-6
 
-tOFF = 1/w * atan(1/w/Renv/C);
+n=14
+A = 230/n;
 
-vOnexp = A*cos(w*tOFF)*exp(-(t-tOFF)/Renv/C);
+#Ngspice
+Von = 12.00010/19
+
+A = 15.16540301
+#A = A - 2*Von
 
 
-if option == 1
-	for i=1:length(t)
-	  if (vSenv(i) > 0)
-	    vOhr(i) = vSenv(i);
-	  else
-	    vOhr(i) = 0;
-	  endif
-	endfor
-endif
+%Rectified
+t=linspace(0, 200e-3, 1000);
 
-if option == 2
-	for i=1:length(t)
-	  vOhr(i) = abs(vSenv(i));
-	endfor
-endif
+vS=A*cos(w*t);
+vret = zeros(1, length(t));
 
 for i=1:length(t)
-  if t(i) < tOFF
-    vOenv(i) = vOhr(i);
-  elseif vOnexp(i) > vOhr(i)
-    vOenv(i) = vOnexp(i);
+  if (vS(i) > 0)
+    vret(i) = vS(i);
   else
-    tOFF = tOFF + 1/f/option;
-    vOnexp = A*abs(cos(w*tOFF))*exp(-(t-tOFF)/Renv/C);
-    vOenv(i) = vOhr(i);
+    vret(i) = 0;
+  endif
+endfor
+#figure 
+#plot(t*1000, vret)
+
+%envelope detetor
+t=linspace(0, 20e-3, 200);
+vS=A*cos(w*t);
+vret = zeros(1, length(t));
+
+for i=1:length(t)
+  if (vS(i) > 0)
+    vret(i) = vS(i);
+  else
+    vret(i) = 0;
   endif
 endfor
 
-average_env = mean(vOenv)
-ripple_env = max(vOenv) - min(vOenv)
+tOFF = (1/w) * atan(1/(w*R*C))
+vOnexp = A*cos(w*tOFF)*exp(-((t-tOFF)/(R*C)));
 
-%average_env = min(vOenv)+ripple_env/2
+figure
+plot(t*1000, vret)
 
-
-%voltage regulator -----------------------------------------
-n_diodes = DATA(5)
-von = 0.6;
-
-vOreg = zeros(1, length(t));
-vOreg_dc = 0;
-vOreg_ac = zeros(1, length(t));
-
-%dc component regulator ----------------
-if average_env >= von*n_diodes
-  vOreg_dc = von*n_diodes;
-else
-  vOreg_dc = average_env;
-endif
-
-%ac component regulator -----------------
-vt = 0.026;
-Is = 1e-14;
-new = 1;
-
-rd = new*vt/(Is*exp(von/(new*vt)))
-
-%if average_env >= von*n_diodes
-%  vOreg_ac = n_diodes*rd/(n_diodes*rd+Rreg) * (vOenv-average_env);
-%else
-%  vOreg_ac = vOenv-average_env;
-%endif 
-
-
-
-% ac regulator
-for i = 1:length(t)
-  if vOenv(i) >= n_diodes*von
-    vOreg_ac(i) = n_diodes*rd/2/(n_diodes*rd/2+Rreg) * (vOenv(i)-average_env);
-  else
-    vOreg_ac(i) = vOenv(i)-average_env;
+hold
+for i=1:length(t)
+  if t(i) < tOFF(1)
+    vO(i) = vret(i);
+  elseif vOnexp(i) > vret(i)
+    vO(i) = vOnexp(i);
+  else 
+    vO(i) = vret(i);
   endif
 endfor
 
-vOreg = vOreg_dc + vOreg_ac;
 
-
-%plots ----------------------------------------------
-
-%output voltages at rectifier, envelope detector and regulator
-hfa = figure(1);
-title('Regulator and envelope output voltage v_o(t)')
-plot (t*1000, vSenv, ";vs_{transformer}(t);", t*1000,vOenv, ";vo_{envelope}(t);", t*1000,vOreg, ";vo_{regulator}(t);");
+plot(t*1000, vO)
+title("Output voltage v_o(t)")
 xlabel ("t[ms]")
-ylabel ("v_O [Volts]")
-legend('Location','northeast');
-print (hfa, "all_vout.eps", "-depsc");
+ylabel ("V[volt]")
+legend("rectified","envelope")
+print ("retified.eps", "-depsc");
 
-%Deviations (vO - 12) 
-hfb = figure(2);
-title('Deviations from desired DC voltage')
-plot (t*1000,vOreg-12, ";vo-12 (t);");
+figure 
+plot(t*1000, vO)
+title("Output voltage v_o(t)")
 xlabel ("t[ms]")
-ylabel ("v_O [Volts]")
-legend('Location','northeast');
-print (hfb, "deviation.eps", "-depsc");
+ylabel ("V[volt]")
+legend("envelope")
+print ("envelope.eps", "-depsc");
 
-%output ENVELOPE DETECTOR
-hfc = figure(3);
-title('Envelope detector output')
-plot (t*1000,vOenv, ";vo_{envelope}(t);");
+Vs = (max(vO)+min(vO))/2;
+
+%voltage regulator circuit
+R3 = 7.16e3
+vsr = vO - Vs;
+
+##Ngspice
+##Id = 4.052251e-4
+##rd = Von/(Id*exp(Vs/Von))
+##rd_n = 19*rd
+rd_n = 1241
+vOr = (rd_n/(rd_n + R3)).*vsr;
+
+Vdc = 19*Von + vOr;
+Vdc_m = (max(Vdc)+min(Vdc))/2;
+Vdc_O = Vdc_m - 12
+
+figure
+plot(t*1000, Vdc)
+hold
+plot(t*1000, Vdc_m)
+title("Output voltage VDC(t)")
 xlabel ("t[ms]")
-ylabel ("v_O [Volts]")
-legend('Location','northeast');
-print (hfc, "envelope.eps", "-depsc");
+ylabel ("V[volt]")
+legend("regulator","average")
+print ("outputdc.eps", "-depsc");
 
-%output REGULATOR
-hfd = figure(4);
-title('Regulator output')
-plot (t*1000,vOreg, ";vo_{regulator}(t);");
+figure 
+plot(t*1000, Vdc-12)
+title("Output voltage VDC(t)-12")
 xlabel ("t[ms]")
-ylabel ("v_O [Volts]")
-legend('Location','northeast');
-print (hfd, "regulator.eps", "-depsc");
+ylabel ("V[volt]")
+print ("v012.eps", "-depsc");
 
+%voltage ripple
 
-diary result_octave.txt
-diary on
-average_reg = mean(vOreg)
-max(vOreg)
-min(vOreg)
-ripple_reg = max(vOreg)-min(vOreg) 
-diary off
+vripple = max(Vdc)-min(Vdc)
+figure
+plot(t*1000, vripple, 'g')
+title("Voltage Ripple")
+xlabel ("t[ms]")
+ylabel ("V[volt]")
+legend("ripple")
+print ("ripple.eps", "-depsc");
 
-cost = Renv/1000 + Rreg/1000 + C*1e6 + n_diodes*0.1*2; %o 0.1 e do diodo do envelope detector 
+%Merit
+R = 26e3
+C = 26e-6
+R3 = 7.15e3
+cost_R = (R + R3)/1000
+cost_C = C/(1e-6)
+cost_d = 0.1*23
+cost = cost_R + cost_C + cost_d
+M = 1/(cost*(vripple + Vdc_O + 1e-6))
 
-if option == 1
-  cost = cost + 0.1
-elseif option == 2
-  cost = cost + 0.4
-endif
-
-MERIT = 1/(cost*(ripple_reg + abs(average_reg - 12) + 1e-6))
+%Table
+fid = fopen ("conclusion.tex", "w");
+fprintf(fid, "Resistor Cost & %e \\\\ \\hline \n", cost_R);
+fprintf(fid, "Capacitor Cost & %e \\\\ \\hline \n", cost_C);
+fprintf(fid, "Diode Cost & %e \\\\ \\hline \n", cost_d);
+fprintf(fid, "Total Cost & %e \\\\ \\hline \n", cost);
+fprintf(fid, "Merit & %e \\\\ \n", M);
+fclose (fid);
