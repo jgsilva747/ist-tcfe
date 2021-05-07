@@ -140,3 +140,7 @@ fprintf(fid, "Diode Cost & %e \\\\ \\hline \n", cost_d);
 fprintf(fid, "Total Cost & %e \\\\ \\hline \n", cost);
 fprintf(fid, "Merit & %e \\\\ \n", M);
 fclose (fid);
+
+fid = fopen ("ripple_octave.tex", "w");
+fprintf(fid, "Ripple & %e \\\\ \\hline \n", vripple);
+fclose (fid);

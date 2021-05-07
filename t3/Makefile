@@ -15,7 +15,7 @@ open:
 clean:
 	@rm -f *.txt
 	make -C doc clean
-	#make -C mat clean
+	make -C mat clean
 	make -C sim clean
 
 .PHONY: all clean
