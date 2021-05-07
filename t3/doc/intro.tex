@@ -2,9 +2,8 @@
 \label{sec:introduction}
 
 % state the learning objective 
-The objective of this laboratory assignment is to choose the architecture of the envelope and voltage regulator circuits in order to have the best merit (M) possible. \par
-Firstly, we started this laboratory writing an NGspice script that simulates the AC/DC converter and measure the output voltage level and voltage ripple , ploting the the voltages at the output of the envelope detector and voltage regulator circuits and the output AC component + DC deviation).\par
-Then, using octave, we have created a theoretical model able to predict the output of the envelope detector and voltage regulator circuits, ploting the same results as in simulation analysis (using theoretical analysis). Finally, also the output DC level and the voltage ripple were computed. \par
+The objective of this laboratory assignment is to convert an alternated current signal with 230V, 50Hz, to a 12V direct current source, using an envelope detector and a voltage regulator.\par
+The circuit was simulated in NGSpice, with a theoretical prediction in Octave. The merit of this work is related to the ripple and cost of the components: the less ripple and the lower the cost, the higher the merit. In this assignment, the merit obtained was aproximately 0,26. 
 
 The merit is calculated using the following expression:\par
 \begin{equation}
@@ -15,7 +14,7 @@ Cost = cost of resistors + cost of capacitors + cost of diodes \par
 Cost of Resistors = 1 monetary unit per kOhm \par
 Cost of capacitor = 1 monetary unit per $\mu$ F \par
 Cost of diodes = 0.1Monetary units per diode \par
-Firstly, we have created a simple circuit and then we were updating the circuit to improve the figure of merit. The final circuit obtainned is the one shown below in figure (Fig.\ref{fig:circuito}): \par
+The final circuit obtainned is the one shown below in figure (Fig.\ref{fig:circuito}): \par
 
 \begin{figure}[H]
 \centering

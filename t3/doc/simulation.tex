@@ -2,13 +2,14 @@
 \label{sec:simulation}
 
 \subsection{Simulating the AC/DC converter for 10 periods}
-As said in the introduction, the first step to this laboratory assignment was to simulate a simple AC/DC converter in NGSpice, the circuit features an ideal transformer, using a current controlled voltage source as well as a voltage controlled current source as explained by the professor in a previous lecture, as well as an envelope detector and a voltage regulator. \par
-This AC/DC converter was simulated for 10 periods and all the analysis were made measuring on a $5e-5$ step in order to evaluate at least 1000 points during the 10 periods. In order to calculate this step we used the frequency of the AC source to know the period and then we multiplied this period by 10 in order to get the total time. We then divided the total time by 1000 points and made the step even smaller than that in order to make sure it had more than 1000 points but not too small that the program ran slowly. \par
-This circuit was first made simple and was elaborated along the way, making it output the correct voltage, increasing the merit figure.
+As said in the introduction, the first step to this laboratory assignment was to simulate a simple AC/DC converter in NGSpice. The circuit features an ideal transformer, using a current controlled voltage source as well as a voltage controlled current source as explained by the professor in a previous lecture, as well as an envelope detector and a voltage regulator. \par
+However, because it is known that the ideal transformer creates a new voltage and current with the same frequency as the original, instead of controlled sources, a simple sinusoidal voltage source would sufice.
+This AC/DC converter was simulated for 10 periods and all the analysis were made measuring on a $5e-5$ step in order to evaluate at least 1000 points during the 10 periods. In order to calculate this step, the frequency of the AC sourcecwas used to know the period and then multiplied by 10 in order to get the total time. We then divided the total time by 1000 points and made the step even smaller than that in order to make sure it had more than 1000 points but not too small that the program ran slowly. \par
+
 
 \subsection{Output voltage level}
 After describing the circuit we made NGSpice measure the average output voltage and using a transient analysis we plotted both the average and the signal of the output voltage in the same graph. \par
-The table and the graph below show the results we got.
+The table and the graph below show the obtained results.
 
 \begin{table}[H]
   \centering
@@ -50,7 +51,7 @@ The three graphs are in the images below.
 
 \subsection{Output voltage ripple}
 We then made NGSpice measure the output voltage ripple, that is the difference between the maximum and the minimum values of the signal. \par
-The result we got is in the table below.
+The result are the following:
 
 \begin{table}[H]
   \centering
@@ -64,7 +65,7 @@ The result we got is in the table below.
 
 \subsection{$v_0 - 12$ plot}
 Lastly, we plotted $v_0 - 12$, which corresponds to the output AC component plus the DC deviation, and calculated the deviation, using the mean value. \par
-The plot can be seen in the image below as well as the deviation in the table below. \par
+The plot can be seen in the image below, as well as the deviation in the table that follows.\par
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.7\linewidth]{../sim/transient5.pdf}
