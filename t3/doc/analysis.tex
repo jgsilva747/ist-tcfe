@@ -2,9 +2,10 @@
 \label{sec:analysis}
 
 In this section are shown the obtained results using a suitable theoretical model able to predict the output of the Envelope Detector and voltage Regulator circuits.
+The theoretical output is calculated using an octave script. Within this script are used both Kirchoff's Laws and diodes equations as well as simplified models of the two. 
 
 \subsection{Envelope detector}
-The envelope detector restricts the voltage's amplitude and the voltage regulator decreases the ripple. As it was shown in the circuit's figure, the envelope detector is, basically, the resistance and the capacitor in parallel. Its main function is to decrease the ripple using the following expression:\par
+The main goal of an envelope detector is to restrict the voltage's amplitude. Different from the voltage regulator that decreases the ripple. As it was shown in the circuit's figure, the envelope detector is, basically, the resistance and the capacitor in parallel. Its main function is to decrease the ripple using the following expression:\par
 \begin{equation}
     v_0(t) = Acos(\omega t_{off})^{\frac{-t+t_{off}}{RC}}
 \end{equation}\par
@@ -39,7 +40,7 @@ $R_3$ and $r_d$ will be explained in the next section.\par
 \end{figure}
 
 \subsection{Voltage Regulator}
-In our circuit, the voltage regulator consists of 23 diodes in series that will impose the 12V voltage. The resistance in serie will decrease the amplitude.\par
+In our circuit, the voltage regulator consists of 19 diodes in series that will impose the 12V voltage. The resistance in series will decrease the amplitude.\par
 The expressions used to do this were the following ones:\par
 Sinusoidal part from envelope:\par
 \begin{equation}
