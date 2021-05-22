@@ -4,20 +4,16 @@
 # type "make clean" to delete all generated files
 # ------------------------------------------------------------
 
-all: | ../doc/octave.log convert
+all: octave.log
+	$(eval NGSTABS=$(shell grep _TAB $< | sed 's/_TAB//g' | sed ':a;N;$!ba;s/\n/ /g'))
+	$(foreach i, $(NGSTABS), sed -n '/^$i_TAB/,/^$i_END/{p;/^$i_END/q}' $< | grep -v $i_TAB | grep -v $i_END | grep -v '#' | sed 's/\=/\&/g' | sed 's/$$/\\\\ \\hline/g' > $i_tab.tex;)
 
-../doc/octave.log: amp.m
+octave.log: amp.m
 	octave $< > $@
-	
-convert: 
-	ls *.eps | awk '{system("epstopdf "$$0 )}'
 
 clean:
-	@rm -f *.tex
-	@rm -f *.txt
-	@rm -f *.cir
-	@rm -f *.eps
-	@rm -f *.pdf
-	
-.PHONY: clean
+	@rm -f octave.log octave-workspace *.tex *.eps *.cir  *~ 
+	#@rm -f data*
+	#@rm -f *_tab.tex result_octave.txt
 
+.PHONY: clean
