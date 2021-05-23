@@ -1,43 +1,38 @@
 \section{Introduction}
-\label{sec:introduction}
+\label{introduction}
 
-% state the learning objective 
-The objective of this laboratory assignment is to convert an alternated current signal with 230V, 50Hz, to a 12V direct current source, using an envelope detector and a voltage regulator.\par
-The circuit was simulated in NGSpice, with a theoretical prediction in Octave. The merit of this work is related to the ripple and cost of the components: the less ripple and the lower the cost, the higher the merit. In this assignment, the merit obtained was aproximately 0,26. 
 
-The merit is calculated using the following expression:\par
-\begin{equation}
-    M = \frac{1}{Cost(ripple(v_0)+average(v_0-12)+10^{-6})}
-\end{equation}\par
-Where: \par
-Cost = cost of resistors + cost of capacitors + cost of diodes \par
-Cost of Resistors = 1 monetary unit per kOhm \par
-Cost of capacitor = 1 monetary unit per $\mu$ F \par
-Cost of diodes = 0.1Monetary units per diode \par
-The circuit is shown below in figure (Fig.\ref{fig:circuito}): \par
+% state the learning objective
+\par The aim of this laboratory assignment was to create an audio amplifier circuit. The circuit was then analysed both theoretically and using by the use of the simulation tool \textit{Ngspice}. To do so, both the gain and the output stages were designed. The audio maximum input of 10mV is given to this amplifier. Also this system connects to an 8 Ohm speaker. The source has an impedance of 100 Ohms and the circuit is supplied by a 12V Voltage DC source (vcc).
+\par In the gain stage mentioned above, a NPN transistor and a common emitter amplifier with degeneration were used. This allows for a high $Z_{i}$ and $A_{V}$. Nevertheless, $Z_{o}$ is also very high, which constitutes a problem to be delt with in the output stage. Consequently, in this second stage, a common collecter amplifier and a PNP transistor were used. Not only does it allow to remain a high $A_{V}$, but it also reduces the value of $Z_{o}$ significantly. Therefore, the gain in the common collector amplifier is $\approx 1$, which is the desired result.
 
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.6]{circuito}
-\caption{AC to DC converter}
-\label{fig:circuito}
+\par The quality of the audio amplifier is evaluated by the following expression:
+\begin {equation}
+	 merit = \frac{Voltage Gain*Bandwidth}{Cost*Lower Cut Off Frequency}   	
+	\label{merit}
+\end{equation}
+
+The circuit is shown below as well as the values associated to each component (in V, Ohm and Farads).
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=.5\linewidth]{circuito1.pdf}
+  \caption{Circuit in analysis}
+  \label{fig:sim4}
 \end{figure}
 
-The individual costs of the components used: \par
-- Diodes - cost: 2.3MU; \par
-- Capacitor - 26MU; \par
-- Resistances - 33.15MU. \par
 
-The data used was the following:
-
-\begin{center}
-  \begin{tabular}{ | c | c | }
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{|l|r|}
     \hline    
     {\bf Name} & {\bf Value} \\ \hline
-    $R_1$ & 26 k$\Omega$ \\ \hline 
-    $R_2$ & 7.15 k$\Omega$ \\ \hline 
-    $C$ & 26 $\mu$S \\ \hline
-    Diodes & 23 Units \\ 
-    \hline
+    \input{../mat/valores_intro_tab} 
   \end{tabular}
-\end{center}
+  \caption{Used Values of each component.}
+  \label{tab:3}
+\end{table}
+
+
+\newpage
+

@@ -1,84 +1,148 @@
-\section{Simulation analysis}
-\label{sec:simulation}
+\section{Simulation Analysis}
+\label{section:sim}
+ 
+In this section, the several steps taken using ngspice in order to conduct the simulation of the audio amplifier, as requested, will be described. The main focus of the simulation was to determine and optimize the values of the gain, the cut off frequencies, both lower and upper and the bandwidth. The quality and overall figure of merit will then be analysed.
+The group proceded as follows:
 
-\subsection{Simulating the AC/DC converter for 10 periods}
-As said in the introduction, the first step to this laboratory assignment was to simulate a simple AC/DC converter in NGSpice. The circuit features an ideal transformer, using a current controlled voltage source as well as a voltage controlled current source as explained by the professor in a previous lecture, as well as an envelope detector and a voltage regulator. \par
-However, because it is known that the ideal transformer creates a new voltage and current with the same frequency as the original, instead of controlled sources, a simple sinusoidal voltage source would sufice.
-This AC/DC converter was simulated for 10 periods and all the analysis were made measuring on a $5e-5$ step in order to evaluate at least 1000 points during the 10 periods. In order to calculate this step, the frequency of the AC sourcecwas used to know the period and then multiplied by 10 in order to get the total time. We then divided the total time by 1000 points and made the step even smaller than that in order to make sure it had more than 1000 points but not too small that the program ran slowly. \par
+\begin{enumerate}
+\item Design of the circuit, having as a starting point the circuit given by the professor.
 
+\item Verification of the operation of the transistors in the forward Active region, the called F.A.R mode. The results are shown below.
 
-\subsection{Output voltage level}
-After describing the circuit we made NGSpice measure the average output voltage and using a transient analysis we plotted both the average and the signal of the output voltage in the same graph. \par
-The table and the graph below show the obtained results.
-
-\begin{table}[H]
+\begin{table}[ht]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Value [V]} \\ \hline
-    \input{average_tab}
-  \end{tabular}
-  \label{tab:average}
+   \input{../sim/NPN_tab}
+     \end{tabular}
+  \caption{Verification of the F.A.R mode in the NPN transistor}
+ 
 \end{table}
 
-\begin{figure}[H] \centering
-\includegraphics[width=0.7\linewidth]{../sim/transient1.pdf}
-\caption{Plot of the average and the signal of the Output Voltage.}
-\label{fig:transient1}
-\end{figure}
 
-\subsection{Output of the Envelope Detector and voltage Regulator circuits}
-The output voltages of both the Envelope Detector as well as the Voltage Regulator circuits were plotted and put each in a different graph as well as a graph with both voltages plotted. \par
-The three graphs are in the images below.
-
-\begin{figure}[H] \centering
-\includegraphics[width=0.7\linewidth]{../sim/transient2.pdf}
-\caption{Envelope Detector Output Voltage.}
-\label{fig:transient2}
-\end{figure}
-
-\begin{figure}[H] \centering
-\includegraphics[width=0.7\linewidth]{../sim/transient3.pdf}
-\caption{Voltage Regulator Output Voltage.}
-\label{fig:transient3}
-\end{figure}
-
-\begin{figure}[H] \centering
-\includegraphics[width=0.7\linewidth]{../sim/transient4.pdf}
-\caption{Envelope Detector and Voltage Regulator Output Voltages.}
-\label{fig:transient4}
-\end{figure}
-
-\subsection{Output voltage ripple}
-We then made NGSpice measure the output voltage ripple, that is the difference between the maximum and the minimum values of the signal. \par
-The result are the following:
-
-\begin{table}[H]
+\begin{table}[ht]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Value [V]} \\ \hline
-    \input{ripple_tab}
-  \end{tabular}
-  \label{tab:ripple}
+   \input{../sim/PNP_tab}
+     \end{tabular}
+  \caption{Verification of the F.A.R mode in the NPN transistor}
+    
 \end{table}
 
-\subsection{$v_0 - 12$ plot}
-Lastly, we plotted $v_0 - 12$, which corresponds to the output AC component plus the DC deviation, and calculated the deviation, using the mean value. \par
-The plot can be seen in the image below, as well as the deviation in the table that follows.\par
 
-\begin{figure}[H] \centering
-\includegraphics[width=0.7\linewidth]{../sim/transient5.pdf}
-\caption{Output AC component + DC deviation.}
-\label{fig:transient5}
-\end{figure}
 
-\begin{table}[H]
+\item OP Analysis
+\par Then, the OP values of the currents and nodal voltages were computed. These are key to calculate the incremental parameters.
+The results are compared to the Ocatve results in section \ref{section:comparison}.
+
+  
+\item  In the frequency domain, measure of the output voltage gain, using the function .meas as well as the lower and upper cut off frequencies and the bandwidth.
+
+
+\begin{table}[ht]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Value [V]} \\ \hline
-    \input{meanv012_tab}
-  \end{tabular}
-  \label{tab:meanv012}
+   \input{../sim/results_tab}
+    \end{tabular}
+  \caption{Results for ngspice}
+    \label{tab:results}
 \end{table}
+
+
+The quantities obtained are desribed in the table \ref{tab:results}. The results obtained allowed the group to understand the functions of the different components of the circuit. 
+The conclusions will be outlined.
+
+
+ \textbf{EFFECT OF THE COUPLING CAPACITORS}
+
+The coupling capacitors' main porpuse is to block the DC signals. If studying an incremental model of an audio amplifier, all values that are constant must be eliminated so the transistors are always fowardly conducting. As so, two coupling capacitors were used. Once the capacitors may also block some low frequencies, they have a direct influence in the bandwidth.
+
+
+
+ \textbf{EFFECT OF THE BYPASS CAPACITOR}
+ 
+  As studied in the lectures, the resistor Re has the funciton of stabelizing the effect of the temperature in the DC voltage. However, it has also a negative effect on the gain, once it lowers it. In order to solve the problem, a bypass capacitor Ce is placed in parallel with the resistor, so that the capacitor bypasses the resistor. In DC mode, the resistor plays its effect in the temperature. In AC, the resistor will not affect the gain. To sum up, the capacitor is a short-circuit for higher frequencies (AC) and a open-circuit for low frequencies (DC).
+
+
+
+ \textbf{EFFECT OF RC}
+ 
+IC is the most important current in the circuit because it determines gm, and so directly influences the gain, by increasing it.
+
+\textbf{GRAPHICAL REPRESENTATION}
+
+In the graphics \ref{fig:sim4} and \ref{fig:sim5}, a graphic representation of the effect of the components above mentioned can be observed. In fact, in the plot \ref{fig:sim5} is extremely enlightening as one can intuitevely notice the high bandwidth, the stabilization of the gain, and the gain itself.
+
+
+
+
+\begin{figure}[ht]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.75\linewidth]{vo1f.pdf}
+  \caption{Input Voltage}
+  \label{fig:sim4}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.75\linewidth]{vo2f.pdf}
+  \caption{Output voltage}
+  \label{fig:sim5}
+\end{subfigure}
+\end{figure}
+
+
+
+
+\item Determination of the input impedance, seen from the input voltage source.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+   \input{../sim/Zin_tab}
+   \end{tabular}
+  \caption{Input impedance in Ohm}
+    \label{tab:ZI}
+\end{table}
+
+\par The result obtained for the input impedance, considering the value in Ohm, is high. This is benefitial for the gain, because the voltage in the node In 2 must be as similiar to Vin as possible. Using a voltage divider, the only way to achieve this was to have a very high resistance value.
+
+\item Determination of the output impedance, using a different set up, seen from the load resistance. 
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+   \input{../sim/op_ZO_tab}
+   \end{tabular}
+  \caption{Output impedance in Ohm}
+  
+  \label{tab:ZO}
+\end{table}
+
+
+Conserning the output impedance, an opposite deduction to the one made for the output impedance is mandoratory. Considering a voltage divider, the output impedance must be as low as possible, in order to the output voltage to be as high as possible. Having said that, an analysing tables \ref{tab:ZI} \ref{tab:ZO}, the difference needed between the two is confirmed. The output impedance obtained is favorable to the 8 Ohm load resistance.
+
+\item Compute of the cost and figure of merit
+\par To finally understand the efficency of the amplifier, the cost and figure of merit were calculated
+
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+   \input{../sim/cost_tab} 
+   \end{tabular}
+  \caption{Cost and Figure of merit}
+  \label{tab:cost}
+\end{table}
+
+Analysing table \ref{tab:cost}, the results obtained may be considered satisfying.
+
+
+\end{enumerate}
+
+
