@@ -1,4 +1,4 @@
-all: 1 2
+all: 1 2 
 
 1:ngspice-1.log
 	$(eval NGSFIGS=$(shell grep _FIG $< | sed 's/_FIG//g' | sed ':a;N;$!ba;s/\n/ /g'))
@@ -10,8 +10,9 @@ all: 1 2
 	ps2pdf vo2f.ps vo2f.pdf
 	
 	
-ngspice-1.log: circuito.cir
+ngspice-1.log: ../sim/circuito.cir
 	ngspice -b $< -o $@
+			
 		
 		
 2:ngspice-2.log
@@ -20,7 +21,7 @@ ngspice-1.log: circuito.cir
 	
 	
 		
-ngspice-2.log: circuito_imp.cir
+ngspice-2.log: ../sim/circuito_imp.cir
 	ngspice -b $< -o $@	
 		
 					

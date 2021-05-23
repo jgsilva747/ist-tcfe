@@ -13,7 +13,7 @@ The group proceded as follows:
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-   \input{../sim/NPN_tab}
+   \input{../sim/NPN_tab} %../sim/NPN_tab
      \end{tabular}
   \caption{Verification of the F.A.R mode in the NPN transistor}
  
@@ -24,7 +24,7 @@ The group proceded as follows:
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-   \input{../sim/PNP_tab}
+   \input{../sim/PNP_tab} %../sim/PNP_tab
      \end{tabular}
   \caption{Verification of the F.A.R mode in the NPN transistor}
     
@@ -34,7 +34,6 @@ The group proceded as follows:
 
 \item OP Analysis
 \par Then, the OP values of the currents and nodal voltages were computed. These are key to calculate the incremental parameters.
-The results are compared to the Ocatve results in section \ref{section:comparison}.
 
   
 \item  In the frequency domain, measure of the output voltage gain, using the function .meas as well as the lower and upper cut off frequencies and the bandwidth.
@@ -44,7 +43,7 @@ The results are compared to the Ocatve results in section \ref{section:compariso
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-   \input{../sim/results_tab}
+   \input{../sim/results_tab} %../sim/
     \end{tabular}
   \caption{Results for ngspice}
     \label{tab:results}
@@ -82,13 +81,13 @@ In the graphics \ref{fig:sim4} and \ref{fig:sim5}, a graphic representation of t
 \centering
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.75\linewidth]{vo1f.pdf}
+  \includegraphics[width=.75\linewidth]{../sim/vo1f.pdf}
   \caption{Input Voltage}
   \label{fig:sim4}
 \end{subfigure}%
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.75\linewidth]{vo2f.pdf}
+  \includegraphics[width=.75\linewidth]{../sim/vo2f.pdf}
   \caption{Output voltage}
   \label{fig:sim5}
 \end{subfigure}
@@ -103,7 +102,7 @@ In the graphics \ref{fig:sim4} and \ref{fig:sim5}, a graphic representation of t
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-   \input{../sim/Zin_tab}
+   \input{../sim/Zin_tab} %../sim/
    \end{tabular}
   \caption{Input impedance in Ohm}
     \label{tab:ZI}
@@ -117,7 +116,7 @@ In the graphics \ref{fig:sim4} and \ref{fig:sim5}, a graphic representation of t
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-   \input{../sim/op_ZO_tab}
+   \input{../sim/op_ZO_tab} %../sim/
    \end{tabular}
   \caption{Output impedance in Ohm}
   
@@ -125,7 +124,7 @@ In the graphics \ref{fig:sim4} and \ref{fig:sim5}, a graphic representation of t
 \end{table}
 
 
-Conserning the output impedance, an opposite deduction to the one made for the output impedance is mandoratory. Considering a voltage divider, the output impedance must be as low as possible, in order to the output voltage to be as high as possible. Having said that, an analysing tables \ref{tab:ZI} \ref{tab:ZO}, the difference needed between the two is confirmed. The output impedance obtained is favorable to the 8 Ohm load resistance.
+Conserning the output impedance, an opposite deduction to the one made for the output impedance is mandoratory. Considering a voltage divider, the output impedance must be as low as possible, in order to the output voltage to be as high as possible. Having said that, an analysing tables \ref{tab:ZI} and \ref{tab:ZO}, the difference needed between the two is confirmed. The output impedance obtained is reasonable compared to the 8 Ohm load resistance. (About 8 times higher)
 
 \item Compute of the cost and figure of merit
 \par To finally understand the efficency of the amplifier, the cost and figure of merit were calculated
@@ -134,7 +133,7 @@ Conserning the output impedance, an opposite deduction to the one made for the o
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-   \input{../sim/cost_tab} 
+   \input{../sim/cost_tab} %../sim/
    \end{tabular}
   \caption{Cost and Figure of merit}
   \label{tab:cost}
