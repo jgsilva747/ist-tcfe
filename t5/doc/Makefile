@@ -16,7 +16,7 @@ $(FILE).pdf: $(wildcard *.tex) $(LODFIGS)
   
 #convert libreoffice draw figures to pdf
 %.pdf: %.odg 
-	--convert-to pdf $<
+	soffice --headless --convert-to pdf $<
 
 clean:
 	@rm -rf *.aux *.bbl *.blg *.glg *.glo *.gls *.ilg *.ist *.lof
