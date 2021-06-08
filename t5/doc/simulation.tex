@@ -1,84 +1,83 @@
 \section{Simulation analysis}
 \label{sec:simulation}
+The simulation of the BPF, using the script given by the professor, will be analysed in this section.
 
-\subsection{Simulating the AC/DC converter for 10 periods}
-As said in the introduction, the first step to this laboratory assignment was to simulate a simple AC/DC converter in NGSpice. The circuit features an ideal transformer, using a current controlled voltage source as well as a voltage controlled current source as explained by the professor in a previous lecture, as well as an envelope detector and a voltage regulator. \par
-However, because it is known that the ideal transformer creates a new voltage and current with the same frequency as the original, instead of controlled sources, a simple sinusoidal voltage source would sufice.
-This AC/DC converter was simulated for 10 periods and all the analysis were made measuring on a $5e-5$ step in order to evaluate at least 1000 points during the 10 periods. In order to calculate this step, the frequency of the AC sourcecwas used to know the period and then multiplied by 10 in order to get the total time. We then divided the total time by 1000 points and made the step even smaller than that in order to make sure it had more than 1000 points but not too small that the program ran slowly. \par
+\subsection{Frequency Response}
+Right after simulating the circuit the frequency response of the same one both in $dB$ and phase are printed as bellow:
 
+\begin{figure}[H] \centering
+\includegraphics[width=0.7\linewidth]{../sim/vo1f.pdf}
+\caption{Frequency Analysis in $dB$}
+\label{fig:frequency1}
+\end{figure}
 
-\subsection{Output voltage level}
-After describing the circuit we made NGSpice measure the average output voltage and using a transient analysis we plotted both the average and the signal of the output voltage in the same graph. \par
-The table and the graph below show the obtained results.
+\begin{figure}[H] \centering
+\includegraphics[width=0.7\linewidth]{../sim/vo1p.pdf}
+\caption{Frequency Analysis - Phase}
+\label{fig:frequency2}
+\end{figure}
+
+\subsection{Central Frequency in the Passband}
+Our results were firstly analysed for the requested value in the laboratory assignment which was the central frequency in the passband. This was achieved by using the given equation by the professor: \par
+\begin{equation}
+    CentralFrequency = \sqrt{Lower_{cutoff} Upper_{cutoff}}
+\end{equation}\par
+In the images below the voltage is plotted. The lower and upper cutoff and central frequency values obtained are also in the table below:
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.7\linewidth]{../sim/vo1.pdf}
+\caption{Output Voltage.}
+\label{fig:output}
+\end{figure}
 
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Value [V]} \\ \hline
-    \input{average_tab}
+    {\bf Name} & {\bf Value [$Hz$]} \\ \hline
+    \input{central_tab}
   \end{tabular}
-  \label{tab:average}
+  \label{tab:central}
+  \captionof{figure}{Central Frequency Gain}
 \end{table}
 
-\begin{figure}[H] \centering
-\includegraphics[width=0.7\linewidth]{../sim/transient1.pdf}
-\caption{Plot of the average and the signal of the Output Voltage.}
-\label{fig:transient1}
-\end{figure}
-
-\subsection{Output of the Envelope Detector and voltage Regulator circuits}
-The output voltages of both the Envelope Detector as well as the Voltage Regulator circuits were plotted and put each in a different graph as well as a graph with both voltages plotted. \par
-The three graphs are in the images below.
-
-\begin{figure}[H] \centering
-\includegraphics[width=0.7\linewidth]{../sim/transient2.pdf}
-\caption{Envelope Detector Output Voltage.}
-\label{fig:transient2}
-\end{figure}
-
-\begin{figure}[H] \centering
-\includegraphics[width=0.7\linewidth]{../sim/transient3.pdf}
-\caption{Voltage Regulator Output Voltage.}
-\label{fig:transient3}
-\end{figure}
-
-\begin{figure}[H] \centering
-\includegraphics[width=0.7\linewidth]{../sim/transient4.pdf}
-\caption{Envelope Detector and Voltage Regulator Output Voltages.}
-\label{fig:transient4}
-\end{figure}
-
-\subsection{Output voltage ripple}
-We then made NGSpice measure the output voltage ripple, that is the difference between the maximum and the minimum values of the signal. \par
-The result are the following:
+\subsection{Output Voltage Gain}
+In this section, the voltage gain in the frequency requested is calculated. \par
+This voltage is the maximum of the difference of the out voltage in $dB$ and the in voltage in $dB$. \par
+The value obtained is in the table below:
 
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Value [V]} \\ \hline
-    \input{ripple_tab}
+    {\bf Name} & {\bf Value [$dB$]} \\ \hline
+    \input{voltage_tab}
   \end{tabular}
-  \label{tab:ripple}
+  \label{tab:vgain}
+  \captionof{figure}{Voltage Gain}
 \end{table}
 
-\subsection{$v_0 - 12$ plot}
-Lastly, we plotted $v_0 - 12$, which corresponds to the output AC component plus the DC deviation, and calculated the deviation, using the mean value. \par
-The plot can be seen in the image below, as well as the deviation in the table that follows.\par
-
-\begin{figure}[H] \centering
-\includegraphics[width=0.7\linewidth]{../sim/transient5.pdf}
-\caption{Output AC component + DC deviation.}
-\label{fig:transient5}
-\end{figure}
+\subsection{Input and Output Impedances}
+The input and output impedances given by Ngspice are below: 
 
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Value [V]} \\ \hline
-    \input{meanv012_tab}
+    {\bf Name} & {\bf Value [$\Omega$]} \\ \hline
+    \input{inimpedance_tab}
   \end{tabular}
-  \label{tab:meanv012}
+  \label{tab:inimpedance}
+  \captionof{figure}{Input Impedance}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+   {\bf Name} & {\bf Value [$\Omega$]} \\ \hline
+    \input{outimpedance_tab}
+  \end{tabular}
+  \label{tab:outimpedance}
+  \captionof{figure}{Output Impedance}
 \end{table}

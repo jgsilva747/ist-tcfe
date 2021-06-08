@@ -2,7 +2,6 @@
 # type "make" command in Unix to create report.pdf 
 # ---------------------------------------------------------
 
-
 all: ngspice ngspice2
 
 ngspice: ../doc/ngspice.log
@@ -12,7 +11,7 @@ ngspice: ../doc/ngspice.log
 	$(foreach i, $(NGSTABS), sed -n '/^$i_TAB/,/^$i_END/{p;/^$i_END/q}' $< | grep -v $i_TAB | grep -v $i_END | grep -v '#' | sed 's/\=/\&/g' | sed 's/$$/\\\\ \\hline/g' > ../doc/$i_tab.tex;)
 	$(foreach i, $(NGSFIGPS), ps2pdf $i;)
 
-../doc/ngspice.log: opamp.cir
+../doc/ngspice.log: sim.cir
 	ngspice -b $< -o $@
 
 ngspice2: ../doc/ngspice2.log
@@ -22,7 +21,7 @@ ngspice2: ../doc/ngspice2.log
 	$(foreach i, $(NGSTABS), sed -n '/^$i_TAB/,/^$i_END/{p;/^$i_END/q}' $< | grep -v $i_TAB | grep -v $i_END | grep -v '#' | sed 's/\=/\&/g' | sed 's/$$/\\\\ \\hline/g' > ../doc/$i_tab.tex;)
 	$(foreach i, $(NGSFIGPS), ps2pdf $i;)
 
-../doc/ngspice2.log: op2.cir
+../doc/ngspice2.log: sim2.cir
 	ngspice -b $< -o $@
 	
 clean:
