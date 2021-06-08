@@ -57,13 +57,13 @@ X1 inv_out inv_in vcc vee outb uA741
 
 
 *R1 and C1
-C1 in inv_in 220n
+C1 in inv_in 220n 
 R1 inv_in 0 1k
 
 
 *R2 and C2
 R2 outb out 1k
-C2 out 0 110n
+C2 out 0 220n
 
 *R3 and R4 fixed
 R3 inv_out outb 100k
@@ -105,10 +105,10 @@ meas ac upper WHEN vdb(out)=maxgain CROSS=LAST
 let central = sqrt(lower*upper)
 let voltagegain = maximum(vdb(out)-vdb(in))
 *impedances in kohm
-let inputimpedance = v(in)[40]/Vin#branch[40]
+let inputimpedance = v(in)[20]/Vin#branch[20]
 *merit
-let costr = 2 + 101
-let costc = 0.330
+let costr = 103
+let costc = 0.44 *2x220n
 let cost = costr + costc
 let gaindeviation = abs(40-voltagegain)
 let fdeviation = abs(1000-central)

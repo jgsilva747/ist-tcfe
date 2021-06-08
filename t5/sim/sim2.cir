@@ -45,32 +45,24 @@
 .model qx NPN(Is=800.0E-18 Bf=93.75)
 .ends
 
-
-
 .options savecurrents
 
-Vcc vcc 0 5.0
-Vee vee 0 -5.0
-Vin in 0 0
+*Descrição do circuito
+Vcc vcc 0 10.0
+Vee vee 0 -10.0
+Vin in 0 0 
 
-X1 inv_out inv_in vcc vee outb uA741
+C1 in non_inv 220n
+C2 out 0 220nn
+X1 non_inv inv vcc vee amp_out uA741
 
+R1 non_inv 0 1000
+R2 amp_out out 1000
+R3 amp_out inv 100000
+R4 inv 0 1000
 
-*R1 and C1
-C1 in inv_in 220n
-R1 inv_in 0 1k
-
-
-*R2 and C2
-R2 outb out 1k
-C2 out 0 110n
-
-*R3 and R4 fixed
-R3 inv_out outb 100k
-R4 inv_out 0 1k
-
-
-Vout out 0 0 ac 1 sin(0 1 1000)
+*Auxiliar voltage to measure output impedance
+Vx out 0 0 ac 1.0 sin(0 700m 1k)
 
 .op
 .end
@@ -79,16 +71,19 @@ Vout out 0 0 ac 1 sin(0 1 1000)
 
 print all
 
-* frequency analysis
-ac dec 10 10 100MEG
+*Frequency analysis
+ac dec 10 10 100k
 
-*MEASURE
-*output impedance in kohm
-let outputimpedance = v(out)[40]/Vout#branch[40]
+print abs(v(out)[20]/vx#branch[20]/(-1))
 
+*output impedance
+let Zo= v(out)[20]/vx#branch[20]/(-1)
+let RealZo= Re(Zo)
+let ImagZo= Im(Zo)
 echo "outimpedance_TAB"
-print outputimpedance
+echo "Output Impedance = $&RealZo + $&ImagZo j"
 echo "outimpedance_END"
 
-
-.endc 
+quit
+.endc
+.end 
